@@ -17,15 +17,11 @@ gallery.innerHTML = galleryItems
   </a>`
   )
   .join("");
-var lightbox = new SimpleLightbox(".gallery", {
-  navText: ["&#11178;", "&#11179;"],
+  
+new SimpleLightbox(".gallery a", {
   captions: true,
   captionDelay: 300,
-  captionSelector: "img",
-  captionType: "attr",
   captionsData: "alt",
   captionPosition: "bottom",
-  captionClass: "",
-  closeText: "&#10803",
   showCounter: false,
 });

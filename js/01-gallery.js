@@ -19,10 +19,11 @@ gallery.innerHTML = galleryItems
 </div>`
   )
   .join("");
+
 gallery.addEventListener("click", openGalleryModal);
 function openGalleryModal(e) {
   e.preventDefault();
-  if (e.target == e.currentTarget) {
+  if (e.target.nodeName !== "IMG") {
     return;
   }
 
@@ -41,6 +42,9 @@ function openGalleryModal(e) {
       },
     }
   );
+
+  instance.show();
+  
   function closeModal(e) {
     e.preventDefault();
     if (e.key === "Escape") {
@@ -52,7 +56,8 @@ function openGalleryModal(e) {
       setTimeout(() => {
         imageToClose.parentElement.removeChild(imageToClose);
       }, 300);
+      instance.close();
     }
   }
-  instance.show();
+  
 }
