@@ -3,11 +3,10 @@ import { galleryItems } from './gallery-items.js';
 
 console.log(galleryItems);
 
-const gallery = document.querySelector(".gallery");
+const gallery = document.querySelector('.gallery');
 gallery.innerHTML = galleryItems
-  .map(
-    ({ preview, original, description }) =>
-      `<div class="gallery__item">
+    .map(({ preview, original, description }) =>
+    `<div class="gallery__item">
   <a class="gallery__link" href=${original}>
     <img
       class="gallery__image"
@@ -17,21 +16,21 @@ gallery.innerHTML = galleryItems
     />
   </a>
 </div>`
-  )
-  .join("");
+)
+    .join("");
 
 gallery.addEventListener("click", openGalleryModal);
-function openGalleryModal(e) {
-  e.preventDefault();
-  if (e.target.nodeName !== "IMG") {
+function openGalleryModal(event) {
+  event.preventDefault();
+  if (event.target.nodeName !== "IMG") {
     return;
   }
-
-  const currentImg = e.target;
+    
+  const currentImg = event.target;
   console.log(currentImg);
   const currentLink = currentImg.dataset.source;
   const instance = basicLightbox.create(
-    `<img width="1200" height="900" src="${currentLink}">`,
+    `<img width="800" height="600" src="${currentLink}">`,
     {
       onShow: (instance) => {
         document.addEventListener("keydown", closeModal);
@@ -45,9 +44,9 @@ function openGalleryModal(e) {
 
   instance.show();
   
-  function closeModal(e) {
-    e.preventDefault();
-    if (e.key === "Escape") {
+  function closeModal(event) {
+    event.preventDefault();
+    if (event.key === "Escape") {
       console.log("closed");
       const imageToClose = document.querySelector(".basicLightbox--img");
       document.removeEventListener("keydown", closeModal);
